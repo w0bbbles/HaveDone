@@ -7,19 +7,20 @@ class Form extends React.Component {
   constructor(){
     super()
     this.state ={
-        userMessage: "Welcome",
+        userMessage: "What To Do",
 
     }
   }
   changeHandler(event){
-    this.setState({taskz:event.target.value}); //set state on the word array to show on broswer
+    this.setState({taskz:event.target.value});
   };
 
   lengthHandler(event){
+    console.log("banana")
     if (this.state.taskz.length <=1) {
-      this.setState({userMessage:"task must be more than 1 character"});
-    } else if (this.state.taskz.length >15){
-      this.setState({userMessage:"task cannot be more than 15 characters"});
+      this.setState({userMessage:"Task should be more than 1 character."});
+    } else if (this.state.taskz.length >60){
+      this.setState({userMessage:"Task should be longer than 60 characters"});
     } else {
       this.props.setTaskz(event.target.value);
       this.setState({taskz:""});
@@ -27,12 +28,16 @@ class Form extends React.Component {
   }
 
   render(){
+
     return(
         <div className={style.form}>
-        <h5>{this.state.userMessage}</h5>
-        <input onChange={(event)=>{this.changeHandler(event)}} value={this.state.taskz}/>
-        <button className="btn btn-dark" onClick={(event)=>{this.lengthHandler(event)}} value={this.state.taskz}>add task</button>
-    </div>
+            <h4>{this.state.userMessage}</h4>
+            <textarea onChange={(event)=>{this.changeHandler(event)}} value={this.state.taskz} cols="30"/>
+                <br/>
+                <br/>
+            <button className="btn btn-dark" onClick={(event)=>{this.lengthHandler(event)}} value={this.state.taskz}>
+            Add</button>
+        </div>
     );
   }
 };

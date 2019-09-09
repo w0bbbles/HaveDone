@@ -1,19 +1,20 @@
 .form {
 	border: 2px solid red;
-	border-radius: 10px;
 }
 
 .list {
 	border: 2px solid yellow;
-	border-radius: 10px;
 }
 
 .doneList {
 	border: 2px solid green;
-	border-radius: 10px;
 }
 
+.container {
+	justify-content: space-around;
+}
+
+
 body{
-	background-color: pink;
 	font-family: 'Manjari', sans-serif;
 }

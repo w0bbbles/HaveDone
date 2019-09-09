@@ -11,27 +11,29 @@ class DoneList extends React.Component{
     this.props.removeTaskz(index);
   }
 
-  render() {
+    render() {
     let doneListElements = this.props.doneListz.map((doneTaskz, index)=>{
-      return(
-        <div className="doneTaskCard">
-          <ul>
-            <li>
-              <p key={index+1}>{doneTaskz.task}</p>
-              <p key={index+2}>{doneTaskz.timeStamp}</p>
-              <button key={index} onClick={()=>{this.removeTask(index)}}>remove task</button>
-            </li>
-          </ul>
+    return(
+        <div className="row">
+            <div className="col-sm">
+                  <p key={index+1}>{doneTaskz.task}</p>
+                  <p key={index+2}>Completed on: {doneTaskz.timeStamp}</p>
+                  <button key={index} onClick={()=>{this.removeTask(index)}}>
+                  remove task</button>
+            </div>
         </div>
-      );
+    );
     });
     return (
       <div className={style.doneList}>
-        <p>Completed Tasks</p>
+        <h4>Completed Tasks</h4>
+            <br/>
+            <br/>
+        <span>Item Count: {this.props.doneListz.length}</span>
         {doneListElements}
       </div>
     );
-  }
+    }
 }
 
 export default DoneList;
