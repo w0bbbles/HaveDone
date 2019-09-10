@@ -1,8 +1,58 @@
+//list jsx
+doneTask(index){
+    this.props.doneTaskz(index);
+  }
+
+<button key={index} onClick={()=>{this.doneTask(index)}}>
+task done</button>
+
+//timer in app jsx
+<Timer minutes={this.state.minutes} seconds={this.state.seconds}/>
+
+<div className={`col-sm ${style.timer}`}>
+
+.container {
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form {
+    border: 2px solid red;
+}
+
+.list {
+    border: 2px solid blue;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 //startbutton jsx
 <button className="btn btn-lg btn-success" disabled={!this.props.value} onClick={this.props.startCountDown}>Start</button>
-
-
-
 
 //DOM
 <TimerInput minutes={this.state.minutes}/>
