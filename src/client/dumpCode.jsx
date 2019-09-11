@@ -1,3 +1,6 @@
+//app jsx
+timeStamp: moment().format('DD MM YYYY, h:mm a')
+
 //list jsx
 doneTask(index){
     this.props.doneTaskz(index);

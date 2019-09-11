@@ -5,6 +5,7 @@ import Form from './components/form/form';
 import List from './components/list/list';
 import Startbutton from './components/startbutton/startbutton';
 import Timer from './components/timer/timer';
+import ResetButton from './components/resetbutton/resetbutton';
 import TimerInput from './components/timerinput/timerinput';
 import style from './style.scss';
 
@@ -21,6 +22,7 @@ class App extends React.Component {
         this.doneTask = this.doneTask.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.startCountDown = this.startCountDown.bind(this);
+        this.stopCountDown = this.stopCountDown.bind(this);
         this.tick = this.tick.bind(this);
         this.secondsRemaining;
         this.intervalHandle;
@@ -29,7 +31,7 @@ class App extends React.Component {
     setTask(taskInput){
         this.state.list.push({
             task: taskInput,
-            timeStamp: moment().format('DD MM YYYY, h:mm a')
+            timeStamp: moment().format('h:mm a')
         });
         this.setState({list:this.state.list});
     }
@@ -82,20 +84,33 @@ class App extends React.Component {
         })
     }
 
+    stopCountDown() {
+        clearInterval(this.intervalHandle);
+        this.setState({
+            isClicked : false
+        })
+    }
+
 render() {
 const clicked = this.state.isClicked;
 
     let mainPage = (
-        <div>
+        <div className="container">
             <div className="row">
-                <div className="col-sm">
-                    <Form doneTask={this.setTask} taskComplete={this.state.task}/>
-                <br/>
-                    <List listing={this.state.list} doneTaskz={this.doneTask} indexList={this.state.index}/>
+                <div className={`col-sm ${style.header}`}>
+                    <h2 className={style.headertext}>Have Done List</h2>
+                </div>
+            </div>
+                <div className="row">
+                    <div className="col-sm">
                 <br/>
                     <TimerInput handleChange={this.handleChange} minutes={this.state.minutes}/>
                 <br/>
                     <Startbutton startCountDown={this.startCountDown} />
+                <br/>
+                    <Form doneTask={this.setTask} taskComplete={this.state.task}/>
+                <br/>
+                    <List listing={this.state.list} doneTaskz={this.doneTask} indexList={this.state.index}/>
                 </div>
             </div>
         </div>
@@ -103,9 +118,21 @@ const clicked = this.state.isClicked;
 
     if (clicked){
         mainPage = (
-            <div className="row">
-                <div className={`col-sm ${style.timer}`}>
-                    <Timer minutes={this.state.minutes} seconds={this.state.seconds} />
+            <div className="container">
+                <div className="row">
+                    <div className={`col-sm ${style.timer}`}>
+                        <Timer minutes={this.state.minutes} seconds={this.state.seconds} />
+                    </div>
+                </div>
+                <div className="d-flex justify-content-space-around">
+                    <div className="row">
+                        <div className="col-sm">
+                            <ResetButton stopCountDown={this.stopCountDown} />
+                        </div>
+                        <div className="col-sm">
+                            <ResetButton stopCountDown={this.stopCountDown} />
+                        </div>
+                    </div>
                 </div>
             </div>
         )
@@ -113,10 +140,7 @@ const clicked = this.state.isClicked;
 
     return (
         <div className="container">
-            <div className="appbody">
-                <h2 className>Have Done List</h2>
-                {mainPage}
-            </div>
+            {mainPage}
         </div>
     );
 };

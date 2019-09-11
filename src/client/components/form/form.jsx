@@ -27,14 +27,18 @@ fieldTextHandler(event){
 
 render(){
     return(
-        <div className="d-flex justify-content-center">
-            <div className={style.form}>
+            <div>
                 <h4>{this.state.userMessage}</h4>
-                <input className={style.inputFormText} onChange={(event)=>{this.changeHandler(event)}} value={this.state.taskInput}/>
-                <button type="button" class="btn btn-outline-warning" onClick={(event)=>{this.fieldTextHandler(event)}}
-                value={this.state.taskInput}>Done!</button>
+            <div class={`input-group ${style.inputFormText}`}>
+                <textarea  rows="3" cols="30" class="form-control" aria-label="With textarea"
+                placeholder="Impress Akira in 3 minutes" onChange={(event)=>{this.changeHandler(event)}} value={this.state.taskInput}></textarea>
             </div>
-        </div>
+            <br/>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-outline-warning" onClick={(event)=>{this.fieldTextHandler(event)}}
+                    value={this.state.taskInput}>Done</button>
+                </div>
+            </div>
         );
     }
 };

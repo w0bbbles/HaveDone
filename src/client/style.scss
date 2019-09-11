@@ -1,9 +1,14 @@
-.inputTimerText{
-	margin-left: 10px;
+.header {
+	margin-top: 10px;
+	text-align: center;
+	background-color: black;
+	border-radius: 0.3rem;
 }
 
-.inputFormText{
-	margin-right: 10px;
+.headertext {
+	color: white;
+	margin-top: 20px;
+	font-family: 'Chilanka', cursive;
 }
 
 .timer {
@@ -13,10 +18,6 @@
   align-items: center;
 }
 
-.appbody {
-	text-align: center;
-}
-
 body{
-	font-family: 'Manjari', sans-serif;
+	font-family: 'Red Hat Display', sans-serif;
 }

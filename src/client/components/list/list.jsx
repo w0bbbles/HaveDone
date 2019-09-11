@@ -7,26 +7,25 @@ class List extends React.Component {
     render() {
         let listElements = this.props.listing.map((taskComplete,index) => {
             return (
-                <div className="row" key={index}>
-                    <div className="col-sm">
-                        <span>{taskComplete.task}</span>
+                <tr key={index}>
+                    <td>{taskComplete.task}
                     <br/>
-                        <span>Posted on: {taskComplete.timeStamp}</span>
-                    </div>
-                </div>
+                    <span>Done by {taskComplete.timeStamp}</span></td>
+                </tr>
             );
         });
     return (
-        <div className="d-flex justify-content-center">
-            <div className={style.list}>
-                <h4>Tasks</h4>
-                {listElements}
-            <br/>
-                <p>Task Completed: {this.props.listing.length}</p>
+        <div className="row">
+                <div className="col-sm">
+                <p>{this.props.listing.length} Task Completed</p>
+                    <table class="table table-striped">
+                        <tbody>
+                            {listElements}
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-    )};
-
+)};
 }
 
 export default List;
