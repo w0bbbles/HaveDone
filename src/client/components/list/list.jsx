@@ -4,32 +4,28 @@ import style from '../../style.scss';
 
 class List extends React.Component {
 
-  doneTask(index){
-    this.props.doneTaskz(index);
-  }
-
-  render() {
-    let listElements = this.props.listz.map((taskz,index) => {
-      return (
-        <div className="taskCard">
-            <ul>
-                <li>
-                    <p key={index+1}>{taskz.task}</p>
-                    <p key={index+2}>Posted on: {taskz.timeStamp}</p>
-                    <button key={index} onClick={()=>{this.doneTask(index)}}>task done</button>
-                </li>
-            </ul>
-        </div>
-      );
-    });
+    render() {
+        let listElements = this.props.listing.map((taskComplete,index) => {
+            return (
+                <tr key={index}>
+                    <td>{taskComplete.task}
+                    <br/>
+                    <span>Done by {taskComplete.timeStamp}</span></td>
+                </tr>
+            );
+        });
     return (
-      <div className={style.list}>
-          <p>Pending Tasks</p>
-          <p>Item Count: {this.props.listz.length}</p>
-          {listElements}
-      </div>
-    );
-  }
+        <div className="row">
+                <div className="col-sm">
+                <p>{this.props.listing.length} Task Completed</p>
+                    <table class="table table-striped">
+                        <tbody>
+                            {listElements}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+)};
 }
 
 export default List;

@@ -4,37 +4,43 @@ import style from '../../style.scss';
 
 class Form extends React.Component {
 
-  constructor(){
+constructor(){
     super()
     this.state ={
-        userMessage: "Welcome",
-
+        userMessage: "Completed",
     }
-  }
-  changeHandler(event){
-    this.setState({taskz:event.target.value}); //set state on the word array to show on broswer
-  };
+}
+changeHandler(event){
+    this.setState({taskInput:event.target.value});
+};
 
-  lengthHandler(event){
-    if (this.state.taskz.length <=1) {
-      this.setState({userMessage:"task must be more than 1 character"});
-    } else if (this.state.taskz.length >15){
-      this.setState({userMessage:"task cannot be more than 15 characters"});
+fieldTextHandler(event){
+    if (this.state.taskInput.length <=1) {
+        this.setState({userMessage:"Task must be more than 1 character."});
+    } else if (this.state.taskInput.length >120){
+        this.setState({userMessage:"Task cannot be more than 120 characters."});
     } else {
-      this.props.setTaskz(event.target.value);
-      this.setState({taskz:""});
+        this.props.doneTask(event.target.value);
+        this.setState({taskInput:""});
     }
-  }
+}
 
-  render(){
+render(){
     return(
-        <div className={style.form}>
-        <h5>{this.state.userMessage}</h5>
-        <input onChange={(event)=>{this.changeHandler(event)}} value={this.state.taskz}/>
-        <button className="btn btn-dark" onClick={(event)=>{this.lengthHandler(event)}} value={this.state.taskz}>add task</button>
-    </div>
-    );
-  }
+            <div>
+                <h4>{this.state.userMessage}</h4>
+            <div class={`input-group ${style.inputFormText}`}>
+                <textarea  rows="3" cols="30" class="form-control" aria-label="With textarea"
+                placeholder="Impress Akira in 3 minutes" onChange={(event)=>{this.changeHandler(event)}} value={this.state.taskInput}></textarea>
+            </div>
+            <br/>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-outline-warning" onClick={(event)=>{this.fieldTextHandler(event)}}
+                    value={this.state.taskInput}>Done</button>
+                </div>
+            </div>
+        );
+    }
 };
 
 export default Form;
