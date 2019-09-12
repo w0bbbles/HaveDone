@@ -124,11 +124,8 @@ const clicked = this.state.isClicked;
                         <Timer minutes={this.state.minutes} seconds={this.state.seconds} />
                     </div>
                 </div>
-                <div className="d-flex justify-content-space-around">
+                <div className="d-flex justify-content-center">
                     <div className="row">
-                        <div className="col-sm">
-                            <ResetButton stopCountDown={this.stopCountDown} />
-                        </div>
                         <div className="col-sm">
                             <ResetButton stopCountDown={this.stopCountDown} />
                         </div>
